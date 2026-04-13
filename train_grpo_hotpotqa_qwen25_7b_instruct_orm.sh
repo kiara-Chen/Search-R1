@@ -26,8 +26,8 @@ CODE_PATH=/nfs-153/chenjiaqi/Verl/verl2/searchr1
 BASE_DIR=/nfs-153/chenjiaqi/Verl/verl2/grpo_base
 JOB_NAME=grpo_base
 
-train_files=$CODE_PATH/data/hotpotqa_search2/train/train.parquet
-val_files=$CODE_PATH/data/hotpotqa_search2/test/test.parquet
+train_files=/nfs-151/disk3/wiki/train.parquet
+val_files=/nfs-151/disk3/wiki/val.parquet
 
 MODEL_LOAD=/itdd-pfs/RMD/models/Qwen/Qwen3-8B
 CHECKPOINT_SAVE=$BASE_DIR
@@ -274,8 +274,8 @@ if [[ "$NODE_RANK" == "0" ]]; then
     trainer.default_hdfs_dir=null \
     trainer.n_gpus_per_node=8 \
     trainer.nnodes="$WORLD_SIZE" \
-    trainer.save_freq=100 \
-    trainer.test_freq=100 \
+    trainer.save_freq=20 \
+    trainer.test_freq=20 \
     trainer.project_name="$WAND_PROJECT" \
     trainer.experiment_name="$EXPERIMENT_NAME" \
     trainer.total_epochs=15 \
