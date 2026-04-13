@@ -1,5 +1,5 @@
 #!/bin/bash
-set -euo pipefail
+#set -euo pipefail
 
 # =========================
 # Fixed config (edit here)
@@ -7,7 +7,7 @@ set -euo pipefail
 export CUDA_VISIBLE_DEVICES=0,1,2,3,4,5,6,7
 export VLLM_ATTENTION_BACKEND=XFORMERS
 export PYTHONUNBUFFERED=1
-
+  
 # Platform env (multi-node only)
 : "${PET_MASTER_ADDR:?PET_MASTER_ADDR is required}"
 : "${PET_MASTER_PORT:?PET_MASTER_PORT is required}"
@@ -15,12 +15,12 @@ export PYTHONUNBUFFERED=1
 : "${PET_NNODES:?PET_NNODES is required}"
 
 export MY_IP=$(hostname -I | awk '{ print $1 }')
+export PET_MASTER_ADDR="$MASTER_ADDR"
 export MASTER_ADDR=$PET_MASTER_ADDR
 export MASTER_PORT=$PET_MASTER_PORT
 export NODE_RANK=$PET_NODE_RANK
 export WORLD_SIZE=$PET_NNODES
 export GPUS_PER_NODE=8
-
 # Paths
 CODE_PATH=/nfs-153/chenjiaqi/Verl/verl2/searchr1
 BASE_DIR=/nfs-153/chenjiaqi/Verl/verl2/grpo_base
